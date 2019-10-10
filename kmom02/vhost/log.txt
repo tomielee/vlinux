@@ -1,0 +1,13 @@
+rsync av redovisa från lokala datorn till VM
+	 $ rsync -av -e "ssh -p 2222" --rsync-path="sudo rsync" redovisa/ jenel@localhost:vhosts/me.linux.se/htdocs
+
+lynx på server
+	$ lynx me.linux.se/me.html
+
+lynx på lokala datorn
+	$ lynx http://me.linux.se:8080/me.html
+
+
+
+--- OBS!
+ställ in dina hosts även på servern... ;/x

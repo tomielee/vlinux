@@ -1,0 +1,188 @@
+<!doctype html>
+<html lang="sv">
+<head>
+    <meta charset="utf-8">
+    <title>Redovisning | vlinux</title>
+    <link rel="stylesheet" href="style/style.css">
+    <link rel="icon" href="favicon.png">
+</head>
+
+<body>
+
+
+
+<header>
+    <nav>
+        <a href="me.html">Me</a> |
+        <a href="redovisning.html">Redovisning</a> |
+        <a href="om.html">Om</a>
+    </nav>
+</header>
+
+
+
+<article>
+
+<header id="top">
+<h1>Redovisningstext i kursen vlinux.</h1>
+</header>
+
+<a href="#kmom01">Kmom01</a>
+<a href="#kmom02">Kmom02</a>
+<a href="#kmom03">Kmom03</a>
+<a href="#kmom04">Kmom04</a>
+<a href="#kmom05">Kmom05</a>
+<!-- <a href="#kmom06">Kmom06</a>
+<a href="#kmom10">Kmom10</a> -->
+
+
+<section>
+<h2 id="kmom01">Kmom01</h2>
+<p>Unix, Linux är helt nytt, likaså Debian. Terminalen har vi använt en del i tidigare kurser och jag har försökt använda mig 
+    så mycket av det som möjligt,     även om det inte "behövs". Har då gjort enklare grejer, såsom att flytta eller kopiera filer. 
+    Jag tycker det är jättekul att sitta i terminal och använda mig av Unix-kommandon. Dock har jag inte koll på allt. I detta 
+    kursmoment satt jag och testade olika sätt att redigera loggen. Råkade öppna och redigera,
+     men då ta bort allt jag skrivit osv... </p>
+
+<p><b>VirtualBox</b> är installerat och jag har en VM med Debian. Jag skaffade en liten <b>Raspberry Pi Zero</b> för skojs skull, 
+    men den blir till att leka med utanför skolan.  <b>Guest Additions</b> är också instalerat och jag har konfigurerat ssh-nyckel. 
+    Jag ville också testa <b>tmux</b> och det funkade innan jag installerade GA, men funkar inte nu. Tmux funkar, men C+b funkar ej. 
+    har felsökt och kollat så att configfilen laddas (enligt olika forum), har 
+    testat att återinstallera och det ska vara installerat och up-to-date så det ska fungera. Det blir ett senare problem att lösa</p>
+
+<p>Egentligen var det inget som var jättekrångligt. Det som tagit tid är att nöta in vad som är vad på väldigt basal invå. 
+    Vad ska installeras var, vad är boxen, maskinen, host, server. När jag gjorde installationen för SSH-nyckel så följde jag slaviskt 
+    instruktionerna. Bara det att jag gjorde det två gånger, först till VB sen till min raspberry. Vilket såklart gjorde att min VB 
+    inte fungerade, eftersom jag skapade en ny nyckel över den gamla. </p>
+<a href="top">Top</a>
+</section>
+
+<section>
+    <h2 id="kmom02">Kmom02</h2>
+    <p>Virtual hosts och name-based Virtual hosts är nya koncept och det har varit något svårt att greppa vad som sker
+        på vilken maskin. En ökande utmaning i att både försöka förstå vad vi ska göra men också det som är runtomkring;
+        vad gör en server, vad kan agera en server osv. Då möjligheterna är så oändliga är det också ibland svårt att
+        hitta rätt förklaringar. Personligen behöver jag också göra för att lära då jag har svårt att bara läsa mig till
+        hur det fungerar. Sammanfattningsvis har vi skapat oss namn-baserade virtuella hosts som håller i olika
+        domännamn. Allt specificeras domnänamnet respektive config fil i <code>/etc/apache2/sites-available</code>, där
+        anges namnet på servern, vilken mapp <b>DocumentRoot </b> den ska mappas mot. Till sist behöver pekar vi data
+        till domännamnet till rätt maskin, i detta fall samma maskin som därmed har ip-adressen 127.0.0.1.
+    </p>
+
+    <p>Att använda mer och mer kod för att göra kommandon i terminalen är utvecklande och roligt. Labben fungerar
+        toppen! Klurigt med stegrande svårighetsgrad. Terminalen används mer och mer flitigt och det fungerar
+        förvånansvärt bra att göra enklare grejer. </p>
+
+    <p>Konfiguerera ssh och rsync gick bra. Permission denied gjorde att det tog lång tid att kopiera redovisa-mappen.
+        Försökte olika åtgärder som berörde rsync, men hittade till slut <code>--rsync-path="sudo rsync"</code> som
+        löste kommandot mkdir på en root folder på servern.</p>
+
+    <p>Behovet av att dela upp terminalen har funnits länge och att få testa <b>tmux</b> är skoj. Det är dock något
+        förvirrande då jag sitter på en macdator med pc-tangentbord. Men det har ju sin självklara förklaring. Vidare
+        har jag inte förstått sessioner och hur de eventuellt går att spara, men tänker att det kommer visa sig längre
+        fram ju mer det används. <b>Unix</b> som OS är jag ivrig att lära mig mer om, vad som går att göra samt vilka
+        färdiga OS som finns. Förutom Debian. Tänker att det verkligen är på gott och ont att kunna skräddarsy sin
+        miljö.</p>
+
+    <p>Det som jag fastnade med längst var att lynx inte hittade till rätt mapp, vilket hade sin enkla förklaring att
+        mappningen i /etc/hosts inte gjorts på servern. Det som var fel var att jag försökte öppna lynx på server och
+        servern hade ingen information var domännamnet skulle gå att hämta - mer än på webben. </p>
+    <a href="top">Top</a>
+</section>
+
+<section>
+    <h2 id="kmom03">Kmom03</h2>
+    <p>
+        Att röra sig i bash är nytt och har endast testats enligt tydliga instruktioner på tidigare kurser. 
+        Att arbeta med Bash påminner om de flesta andra programeringspråk i sin konstruktion. Eftersom arbetet sker i 
+        terminal påminns det personligen mest om python.
+    </p>
+    <p>
+        Det är spännande att röra sig i denna miljö. Att helt plötsligt kunna köra kommandon på stora filer. Tänker 
+        spontant på databaser och lagring av data och genom att kunna skriva script kunna röra sig och använda sig av stor mängd data. 
+        Utmaningen är väl att inte luta sig tillbaka och låta datan bli enorm. Ett exempel vore att ha en lagring av medlemmar. 
+        Bara för att det går att hämta ut medlemmar efter olika kategorier eller födelseår, kanske inte alla medlemmar ska lagras på samma ställe. 
+        Kontra detta är då möjligheten att radera data på medlemmar vars inaktivetet är längre än 3 år tas bort, allt enligt GDPR. 
+    </p>
+    <p>
+        Det som tagit extra lång tid i detta kursmoment var orsakat av $PATH. Som visade sig först koppla till XAMPP vilket
+         gjorde att head inte ville fungera. Ett litet problem som gjorde att laben tog extra lång tid då andra metoder fick användas.
+        Docker var väldigt svårt att förstå till en början. Det är som vanligt, konceptuellt är det enkelt. Att kolla på olika 
+        tutorials och läsa olika intruktioner gör det inte alltid enkelt att förstå vad det egentligen är. Det blir då svårt 
+        att veta hur uppgiften ska börjas.
+    </p>
+    <p>
+        Nu när vi kört med Docker är det något svårt att förstå syftet med VirtualBox.
+    </p>
+    <a href="top">Top</a>
+</section>
+
+
+<section>
+    <h2 id="kmom04">Kmom04</h2>
+    <p>Valde att göra en Express app i Javascript då vi jobbar med det i kursen som går parallelt. Detta då behovet 
+        finns att få en djupare förståelse för själva strukturen. Hade annars valt att göra med Flask och i python. 
+        Det är en uppförsbacke varje gång ett kursmoment börjar 
+        då en hel del kunskapsluckor saknas. T.ex. vad är klient och vad är server.
+        Om jag förstått det hela är har vi först skapat en server som hämtar data från data/items.json. Innehållet blir t
+        illgängligt på olika sätt och med olika resultat via våra routes. Routesen nås via
+        klienten som i utvecklingsmiljön är vår localhost och den port vi startar upp servern på. För att detta ska fungera 
+        i vår lokala miljö behöver jag utgå från vissa miljöer, i mitt fall node för att
+        kunna köra npm. </p>
+    <p>Docker i sin tur är installerat på en Virtuell Maskin, som om det vore en annan dator med op Debian. Med Dockerfilen 
+        skapas en image, en kopia av appens miljö. Att skapa volume i Docker blev rörigt
+        då datan inte ville uppdateras när servern körde live. Noterade en pågående felsökning av detta i gitterchatten och 
+        såg att detta beror på att Express inte tillåter det. Vilket nu är noterat i loggen.
+    </p>
+    <p>
+        Bash-scriptet blev väldigt likt tidigare kursmoment. Hade problem med att få information från curl eftersom curl inte 
+        ger någon information. Tolkade kravet att det var okej att något returneras
+        om servern ej är igång. Lät en if-sats ta hand om exitcode från Curl.
+    </p>
+    <p>
+        Obs, har en error <code>WARNING eslint failed: './me/kmom04/server/routes/color.js'
+        /home/saxon/students/20182/jelf18/dbwebb-kurser/vlinux/me/kmom04/server/routes/color.js
+        42:14 error Trailing spaces not allowed no-trailing-spaces</code> . Har inte kunnat lösa denna ens med en /*eslint --fix option
+    </p>
+    <a href="top">Top</a>
+</section>
+
+<section>
+<h2 id="kmom05">Kmom05</h2>
+<p>
+    Det svåra i detta var att förstå hur själva datan skulle hämtas och valideras. Alltså problemet var att fånga errorkoder.
+    Insåg att servern var för bra kodat för det. Den svarar alltid med en array med olika meddelanden. 
+</p>
+<p>
+    En lärdom är att verkligen ta tid att få en överblick över returerna från servern. Nu blev det att jag gjorde utskrifter för att
+    bekräfta något som inte skulle bekräftas. Att en kod körs, att jag curlar en sida osv. Detta må vara bra i utveckling men inte 
+    när spelet spelas. Inget tar spelet vidare av att nås av "You have chosen map: [empty] " . 
+</p>
+<p>
+    Försökte mig på att dela upp bashscriptet i lite fler funktioner och återanvända det som gick att återanvända. Det som inte är städat
+    och som dessutom kan "förstöra" spelet är att onödig data sparas i separata filer. Det som kan ske är att en data hämtas och om det blir fel
+    i sparandet av fil, så blir det fel vid avläsning. Vilket sker om spelaren gör <code>select</code> två gånger.
+    Bättre vore det att tilldela variabler direkt vid hämtning. Det som behövde sparas är GAMEID och CURRENTROOM.
+</p>
+<p>
+    Försökte göra spelet lite "snyggt". Det var också enklare att se spelet gå framåt med tydliga utskrifter. Vidare missförstod
+    jag "info". Trodde det skulle vara möjligt för spelaren att få information om valfritt rum, vilket det är nu. Och i det fall spelaren
+    skriver in en icke-siffra ges ett errormeddelande.
+</p>
+<p>
+    Koden för själva servern kikade jag på och hoppas innerligt att vi inte ska göra något liknande till kmom10...
+</p>
+<p>
+    Önskemål! En liten förklaring av portarna och kanske vem som blir host och server när och hur. Clienten blir en host och Server blir 
+    servern. Inom samma nätverk behövs inte portar, så exempel på när behövs portar? Låt säga att servern ska vara tillgänglig utifrån ska
+    inte servern köras med <code>run -p myserver:80</code> i det fall min server har fått namnet myserver och i det fall clienten ska kunna
+    komma åt servern från http?
+</p>
+
+</section>
+</article>
+
+
+
+</body>
+</html>

@@ -1,0 +1,14 @@
+### notes for kmom05
+
+# # # CREATE
+docker build --rm -t <IMAGENAME>:<TAG> .
+    # added -rm to remove all the <none> so no more need to prune if not neccery.
+    # don't forget the . if you're in the directory where the dockerfile is.
+
+# # # RUN containter
+docker run --rm -d --net <NETWORKNAME> -p 8083:80
+    # apache runs on 80 local
+    # when running in bash use -d detached. The server is then running in the background - so you don't need a new terminal window. Check container with ps -a
+
+# # # RM IMAGE
+docker image rm IMAGENAME

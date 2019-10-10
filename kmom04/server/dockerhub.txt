@@ -1,0 +1,3 @@
+Porten servern lyssnar på: 1337
+jeneljenel/vlinux-server:latest
+

@@ -1,0 +1,6 @@
+	---- ALIAS
+tbs 	= tmux new -s basic
+tb 	= tmux attach -t basic
+
+
+

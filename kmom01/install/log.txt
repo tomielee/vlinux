@@ -1,0 +1,42 @@
+
+servername: jenel
+ip: 10.0.2.2
+
+svar från 
+$	uname -a 
+Linux debian 4.19.0-5-amd64 #1 SMP Debian 4.19.37-5+deb10u2 (2019-08-08) x86_64 GNU/Linux 
+
+-----
+
+ssh jenel@localhost -p 2222 
+
+----- TERMINAL GREJER
+
+vi NAME.txt --- öppna och redigera en textfil
+	glöm inte INSERT med i....
+
+Enter + Esc --- avslutar redigeringen
+:wq --- SPARA
+:q! --- SPARAR INTE
+
+
+----- RSYNC
+https://www.linuxtechi.com/rsync-command-examples-linux/
+
+
+Local Sync: # rsync {options} {Source} {Destination}
+
+Remote Sync pull: # rsync {options}  <User_Name>@<Remote-Host>:<Source-File-Dir>  <Destination>
+
+Remote Sync Push: # rsync  <Options>  <Source-Files-Dir>   <User_Name>@<Remote-Host>:<Destination>
+
+---- REBOOT cmd 
+systemctl reboot or systemctl poweroff
+
+
+---- TMUX
+
+C+b --- split panes
+C+b % --- split vertical
+
+

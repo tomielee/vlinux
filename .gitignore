@@ -1,0 +1,11 @@
+#package folders
+node_modules/
+
+#kmom02
+apache2/
+backup/
+*.answer
+
+
+# misc
+.DS_Store

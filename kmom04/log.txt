@@ -1,0 +1,21 @@
+### notes for kmom04 
+
+run as sudo
+
+# # # CREATE
+docker build -t <IMAGENAME>:<TAG> .
+    don't forget the .
+
+# # # REMOVE
+docker image rm <IMAGENAME/IMAGDEID>
+
+# # # NODE notes
+When running the docker container, the volume won't update live. 
+You need to :
+    1. build the image
+    2. stop the container:  ctrl + c
+    3. start the container: docker run --rm -p 1337:1337 -v $(pwd)/server/data:/server/data/ IMAGENAME:latest
+
+To check the volume
+    1. docker run -it --rm -p 1337:1337 -v $(pwd)/server/data:/server/data/ IMAGENAME:latest bash
+    2. you are now in the container. theck the filestructure to see if /server/data contain the files you want. if yes. the volume is ok.

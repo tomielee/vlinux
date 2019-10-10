@@ -1,0 +1,34 @@
+DOCKER
+
+run with sudo
+
+# # # CHECK IMAGES
+docker IMAGES
+REPO | TAG |IMAGE ID | ...
+
+# # # REMOVE OLD IMAGES
+docker system prune
+
+Obs - will stop running containers
+
+# # # CREATE
+docker build -t <IMAGENAME>:<TAG> .
+if TAG is empty it will be "latest"
+
+# # # run
+docker run <IMAGENAME>
+
+# # # Check aktive containers
+docker ps -a
+
+-------- DOCKER hub
+docker login --username=jeneljenel
+Don't use email. Doesn't work with this version.
+
+1. check :  docker images
+2. tag:     docker tag IMAGEID IMAGENAME 
+3. push:    docker push IMAGENAME
+
+# # #PUSH till docker hub
+sudo docker push username/imagename:tag
+sudo docker push jeneljenel/vlinux-commands
