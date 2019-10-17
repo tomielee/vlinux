@@ -14,7 +14,9 @@ sudo docker build --rm -t jeneljenel/vlinux-mazeclient client/
 # Båda kontainrarna ska ha egna namn. * --name
 # # servernamnet * --network-alias
 # Server-kontainern ska köras i bakgrunden. * -d de
-sudo docker run --rm -d -p 8080:1337 --name myserver --network-alias myserver --net dbwebb jeneljenel/vlinux-mazeserver:latest
+# sudo docker run --rm -d -p 8080:1337 --name myserver --network-alias myserver --net dbwebb jeneljenel/vlinux-mazeserver:latest
+sudo docker run --rm -d -p 8080:1337 --name myserver --net dbwebb jeneljenel/vlinux-mazeserver:latest
+
 
 # Klienten ska använda serverns namn. * curl myserver i mazerunner.bash
 # Du behöver då byta ut “localhost” i skriptet mot namnet du ger servern.

@@ -10,7 +10,9 @@
 
 # SERVERNAME
 PORT=1337
-SERVERNAME="localhost:$PORT"
+SERVERNAME="localhost:$PORT" #Change the servername!
+# SERVERNAME="myserver:$PORT" #Change the localhost!
+
 
 # Name of the script
 SCRIPT=$( basename "$0" )
@@ -92,7 +94,7 @@ function get-room-info
 #
 # INIT - init a new game
 function app-init
-{
+{   
     curl -s -o $GAMEFILE $SERVERNAME?type=csv
 
     sed -n '2 p' $GAMEFILE | cut -d "," -f 2 > $IDFILE
@@ -434,7 +436,7 @@ function start-game
     touch $MAPSFILE
     touch $ROOMFILE
 
-    chmod +x data/*.txt
+    chmod +x /data/*.txt
 }
 
 function menu
@@ -476,4 +478,3 @@ menu "$@"
 
 badUsage
 exit 1
-
