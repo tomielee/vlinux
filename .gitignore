@@ -6,6 +6,8 @@ apache2/
 backup/
 *.answer
 
+#kmom06
+guide/
 
 # misc
 .DS_Store
