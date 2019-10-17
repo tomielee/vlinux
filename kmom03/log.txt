@@ -19,7 +19,10 @@ if TAG is empty it will be "latest"
 docker run <IMAGENAME>
 
 # # # Check aktive containers
-docker ps -a
+    docker ps
+
+# # # Check all containers
+    docker ps -a
 
 -------- DOCKER hub
 docker login --username=jeneljenel
