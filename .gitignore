@@ -7,7 +7,7 @@ backup/
 *.answer
 
 #kmom06
-guide/
+kmom06/guide/
 
 # misc
 .DS_Store
