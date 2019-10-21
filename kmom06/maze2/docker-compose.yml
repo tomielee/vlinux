@@ -1,0 +1,23 @@
+version: "3"
+networks:
+    dbwebb:
+services:
+    server:
+        image: jeneljenel/vlinux-mazeserver:latest
+        container_name: "myserver"
+        ports:
+            - "8080:1337"
+        networks:
+            - dbwebb
+        volumes:
+            - "./server:/server/"
+        restart:
+            "always"
+    client:
+        image: jeneljenel/vlinux-mazeclient:loop
+        container_name: "myclient"
+        networks: 
+            - dbwebb
+        links: 
+            - server:myserver
+

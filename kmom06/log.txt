@@ -1,0 +1,88 @@
+
+### Test the guide scripts for YML and command in docker. From /guide/
+Didn't work...
+
+Build the image.
+    sudo docker build --rm -t guide/guide-server .
+
+Run the container
+    sudo docker run --rm -it -p 8080:80 --name test-server -v $(pwd)/html/:/var/www/html/ guide/guide-server:latest
+
+    sudo docker run --rm -d -p 8080:80 --name test-server -v $(pwd)/html/:/var/www/html/ guide/guide-server:latest
+
+    -p 8080:80  = the port 
+
+######## Kmom06 notes.
+Try stuff before YML
+
+build the images with dev.bash. or
+    sudo docker build --rm -t jeneljenel/vlinux-mazeserver server/
+    sudo docker build --rm -t jeneljenel/vlinux-mazeclient:loop client/
+
+create network
+    1. sudo docker network create dbwebb
+
+run the server same as sudo docker build --rm -t jeneljenel/vlinux-mazeclient:loop client/
+    2. sudo docker-compose up server 
+
+run the client  sudo docker run -it --rm  --name myclient --net dbwebb jeneljenel/vlinux-mazeclient:loop
+    3. sudo docker-compose up client 
+
+# # # # RUN YML
+Run server detached
+    $ docker-compose up -d server
+Run client
+    $ docker-compose run client
+Stäng ner
+    $ docker-compose down
+
+######## OBS! YOU ran build the client with wrong tag. so latest could be the loop.... #####
+
+
+
+### Composer - STARTA EN SERVER
+https://dbwebb.se/guide/docker/compose-network#starta-sevices
+
+    sudo docker-compose up
+
+
+### TO RUN AS ROOT and check the files in your image
+    sudo docker run -it <image-name> bash
+
+# # # Container stuff
+1. kill the container
+    docker kill <container name>
+2. remove the container
+    docker rm <container name>
+
+
+
+# # # # # # # # # # 
+Use 
+    gsed on local
+
+# Replace
+    sed 's/find/replace/' file
+
+# Replace multiple - use /g, global
+    sed 's/find/replace/g; s/find/replace/g' file 
+
+# FIND AND REPLACE multiple
+    sed -E 's/.*([0-9]{2})+\/([A-Za-z]{3})+\/([0-9]{4}).*/\3\-\2\-\1/' access-medium.log)
+        s/              >> start sed replace
+        .*              >> everything from the beginning
+        ([0-9]{2})      >> group 1 = digits, two (dd)
+        +\/             >> plus, "/" with the escape \ 
+        ([A-Za-z]{3})   >> group 2 = letters, 3 (Mmm)
+        ([0-9]{4})      >> group 3 = digits, 4 (yyyy)
+        .*              >> everything after
+
+        /               >> replace with...
+
+        nothing         >> .* is replaced with nothing
+        \3              >> group 3
+        \-              >> - with escape \
+        ... same with 2 and 1
+        nothing         >> .* is replaced with nothing
+
+        /               >> end of se replace
