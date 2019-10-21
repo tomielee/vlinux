@@ -10,8 +10,8 @@
 
 # SERVERNAME
 PORT=1337
-# SERVERNAME="localhost:$PORT" #Change the servername!
-SERVERNAME="myserver:$PORT" #Change the localhost!
+SERVERNAME="localhost:$PORT" #Change the servername!
+# SERVERNAME="myserver:$PORT" #Change the localhost!
 
 
 # Name of the script
