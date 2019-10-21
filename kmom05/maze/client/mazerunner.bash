@@ -10,8 +10,8 @@
 
 # SERVERNAME
 PORT=1337
-SERVERNAME="localhost:$PORT" #Change the servername!
-# SERVERNAME="myserver:$PORT" #Change the localhost!
+# SERVERNAME="localhost:$PORT" #Change the servername!
+SERVERNAME="myserver:$PORT" #Change the localhost!
 
 
 # Name of the script
@@ -431,12 +431,12 @@ function badUsage
 #
 function start-game
 {
-    touch $GAMEFILE
-    touch $IDFILE
-    touch $MAPSFILE
-    touch $ROOMFILE
+    touch data/game.txt
+    touch data/id.txt
+    touch data/maps.txt
+    touch data/room.txt
 
-    chmod +x /data/*.txt
+    chmod +x data/*.txt
 }
 
 function menu

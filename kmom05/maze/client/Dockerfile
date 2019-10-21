@@ -11,11 +11,15 @@ RUN apt-get update && \
 WORKDIR client
 
 # Copy the exiting files in script to containter /maze/client
-COPY ./* /client/
-COPY ./data/ /client/data/
+COPY ./mazerunner.bash /client/mazerunner.bash
 
-# Change all .bashfiles to readable in dir /maze
-RUN chmod +x ./*.bash
+# Change mazerunner to be readable
+RUN chmod +x ./mazerunner.bash
+
+# Create folder data and make the folder writewbale
+RUN mkdir /client/data/
+RUN chmod +x ./data/
+
 
 ENTRYPOINT ["/bin/bash"]
 # ENTRYPOINT ["/bin/bash", "-c"]

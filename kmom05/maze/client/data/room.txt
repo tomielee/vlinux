@@ -1,2 +1,0 @@
-roomid,description,west,east,south,north
-5,Room 5,-,-,8,2

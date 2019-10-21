@@ -12,3 +12,11 @@ docker run --rm -d --net <NETWORKNAME> -p 8083:80
 
 # # # RM IMAGE
 docker image rm IMAGENAME
+
+
+# # # NOTES
+Create files in your script. Copy only your script.
+Create diretories if these are needed for your script.
+
+Notes for kmom05
+don't forget to change your servername when running in your dockerfile vs local.
