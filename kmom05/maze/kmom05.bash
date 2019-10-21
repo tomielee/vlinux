@@ -5,9 +5,11 @@
 # Skapa ett nätverk med namet dbwebb.
 sudo docker network create dbwebb
 
-# # BYGGER IMAGE
-sudo docker build --rm -t jeneljenel/vlinux-mazeserver server/
-sudo docker build --rm -t jeneljenel/vlinux-mazeclient client/
+# # BYGGER IMAGE 
+# Build when only when you have to!!! (local in dev mode...)
+# The images are on dockerhub so they will build from the hub. 
+# sudo docker build --rm -t jeneljenel/vlinux-mazeserver server/
+# sudo docker build --rm -t jeneljenel/vlinux-mazeclient client/
 
 # Starta upp båda kontainrarna med rätt options.
 # Servern ska även kunna nås via webbläsaren. * -p 8080
