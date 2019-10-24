@@ -1,2 +1,2 @@
 text,gameid
-New game initialized.,94998
+New game initialized.,45596

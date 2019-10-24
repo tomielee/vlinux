@@ -187,7 +187,7 @@ assertEqual "1.4" false
 
 
 
-
+sed -n -E '/^[a-zA-Z0-9." "_]+@[a-zA-Z0-9.]+.[a-zA-Z]{2,4}$/p' < emails.txt
 
 ANSWER=$( gsed -n -E '/^[a-zA-Z0-9." "_]+@[a-zA-Z0-9.]+.[a-zA-Z]{2,4}$/p' < emails.txt)
 

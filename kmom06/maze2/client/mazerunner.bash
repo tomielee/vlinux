@@ -329,16 +329,15 @@ function app-loop
     app-init
     app-maps
     
-    while (( $@ ))
+    while (( $# ))
     do
         local choice
         read -r -p "Choose map: " choice
-
         case "$choice" in
             0 | 1)
                 app-select "$choice"
                 app-enter
-                app-info "$@"
+                app-info
                 break
             ;;
             quit)
@@ -349,7 +348,7 @@ function app-loop
         esac
     done
 
-    while (( $@ )) 
+    while (( $# )) 
     do 
         local direction
         echo ""

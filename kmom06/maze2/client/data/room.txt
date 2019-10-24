@@ -1,2 +1,2 @@
-roomid,description,west,east,south,north,text
-2,You found the exit,-,-,-,-,Path dont exist
+roomid,description,west,east,south,north
+2,You found the exit,-,-,-,-
