@@ -9,5 +9,7 @@ backup/
 #kmom06
 kmom06/guide/
 
+#kmom10
+kmom10/bthloggen/data/log.json
 # misc
 .DS_Store
