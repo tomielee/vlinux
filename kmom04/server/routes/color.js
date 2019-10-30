@@ -34,16 +34,17 @@ router.get('/:color', function (req, res) {
     const urlcolor = req.params.color;
     let items = file.items;
     let plants = [];
+    let data;
 
     for (let i = 0; i < items.length; i++) {
         items[i].color.map((c) => {
             if (c.toLowerCase() === urlcolor) {
                 plants.push(items[i].name);
-            } 
+            }
         });
     }
 
-    let data = {
+    data = {
         plants: plants
     };
 

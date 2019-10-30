@@ -13,5 +13,8 @@
   "dependencies": {
     "directory-tree": "^2.2.4",
     "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "eslint-plugin-react": "^7.16.0"
   }
 }
