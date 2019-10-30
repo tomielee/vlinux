@@ -32,8 +32,8 @@
 <a href="#kmom03">Kmom03</a>
 <a href="#kmom04">Kmom04</a>
 <a href="#kmom05">Kmom05</a>
-<!-- <a href="#kmom06">Kmom06</a>
-<a href="#kmom10">Kmom10</a> -->
+<a href="#kmom06">Kmom06</a>
+<a href="#kmom10">Kmom10</a>
 
 
 <section>
@@ -148,7 +148,7 @@
 </section>
 
 <section>
-<h2 id="kmom05">Kmom05</h2>
+    <h2 id="kmom05">Kmom05</h2>
 <p>
     Det svåra i detta var att förstå hur själva datan skulle hämtas och valideras. Alltså problemet var att fånga errorkoder.
     Insåg att servern var för bra kodat för det. Den svarar alltid med en array med olika meddelanden. 
@@ -178,6 +178,171 @@
     inte servern köras med <code>run -p myserver:80</code> i det fall min server har fått namnet myserver och i det fall clienten ska kunna
     komma åt servern från http?
 </p>
+
+</section>
+<section>
+    <h2 id="kmom06">Kmom06</h2>
+    <p>
+        Tycker att Compose känns logiskt och gör alla dockercommandon överskådliga. Av någon anledning kom jag inte vidare när övningarna
+        gjordes. Eventuellt var det något fel på läsrättigheterna, det fungerade dock sen när yml dokumentet skapades för spelet.
+    </p>
+    <p>
+        Det finns förhoppningar om att fortsätta använda docker då jag tycker det är så smidigt. Det var dock väldigt svårt att skapa sig
+        en bild av vad som faktiskt sker, hur och var. I och med detta kursmoment förstår jag klient och server bättre. Vilket gjorde att
+        jag kunde förstå syftet med att ha en compose yml i min server och en för både client och server i det fall jag vill att servern
+        ska köras och vara tillgänglig utan min egna client. 
+    </p>
+    <p>
+        Mazerunner strukturen ändrades inte alls vilket var ganska skönt. Däremot fungerade inte en grej.        
+        <p>
+            <code>
+            cmd="curl -s $SERVERNAME/$GAME_ID/maze/$CURR_ROOM/$direction?type=csv"
+            <br>... code...
+            <br>if [[ ${room_arr[2]} != "-" ]]
+            <br>then
+            <br>    $cmd &gt; $ROOMFILE
+            </code>
+        </p>
+        ändrades till
+        <p> <code>
+            cmd=$( curl -s "$SERVERNAME"/"$GAME_ID"/maze/"$CURR_ROOM"/"$direction"?type=csv 	&gt;  "$ROOMFILE")
+            <br>... code...
+            <br>if [[ ${room_arr[2]} != "-" ]]
+            <br>then
+            <br>    $cmd
+        </code>
+        </p>
+    </p>
+    <p>
+        Förstår att det fungerar nu, förstår dock inte hur det kunde fungera innan.
+
+    </p>
+    <p>
+        Regex är till skillnad från yml inte så lättöverskådeligt. Det är svårtläst och lätt att det blir fel, vidare fungerade
+        inte regex101 med gsed och något som verkade logisikt och fungerade på 101 fungerade inte i scriptet. Frustrerande
+        men väldigt tillfredsställande när koden väl knäcktes. 
+    </p>
+</section>
+
+<section>
+<h2 id="kmom10">Kmom10</h2>
+    <p>Projektet är gjort för att klara krav 1 - 3. Krav 5 är delvis gjort.</p>
+    <u><h2>1. Krav</h2></u>
+    <h2>KRAV 1 - Regex för att konvertera log till Json</h2>
+    <p><b>log2json.bash</b></p>
+    <p>
+        För att konvertera logfilen till en Jsonfil användes regex tillsamans med sed.
+        Då flera olika delar av varje rad skulle plockas ut valde jag att lägga mina olika regex i olika variabler.
+    </p>
+    <p>
+        För att få ut rätt del testade jag regexp på <a href="http://regex101.com">regex101</a> men också i terminalen. I nästa steg testdes detta 
+        i bashscriptet och det önskade regexp skrevs ut i en liten testfil. När alla delar fungerade användes sed för att plocka ut de önskade delarna;
+        <code>sed -nE 's/pattern/replace/p'</code> pattern 
+        ersattes med regex-variablerna och replace är utskriften för att få en grund till en json kompatibel fil, alltså <i>måsvingar</i> <code>{</code>.
+    </p>
+    
+    <p>
+        Gsed är inte helt kompatibelt med mac och det finns därmed olika lösningar i koden. I <i>replace</i>delen lästes inte newline <code>\n</code> och 
+        <code>tr</code> fick användas för att ersätta den tillfälliga tecknet '|' med '\n'. Vidare för att skriva datan till en fil används
+        <code>printf '[\n%s\n]\n' "${json::-1}"	&gt; "$JFILE</code> som lägger till hakparanteserna <code> [ ]</code> samt skickar in hela arrayen json 
+        minus sista tecknet som är ett kommatecken ','.
+        Denan print gav felmeddelande på mac; <code>"${json::-1}"</code> får inte skickas in med negativa tal, vilket löstes med att skriva in extra 
+        kommandorad med sed <code>-e '$ s/\,$//p' \ </code> för att ta bort sista kommatecknet samt göra en egen printf utan negativa tal.  
+    </p>
+
+    <h2>KRAV 2 - Server för loggen</h2>
+    <p><b>server/index.js</b></p>
+    <p>
+        Servern körs med javascript och Express.
+    </p>
+    <p>
+        <code>'/'</code> visar home.js som använder sig av directory-tree för att visa vilka routes som är tillgängliga.
+    </p>
+    <p>
+        <code>'/data'</code> har ändrats många gånger. I nuvarande struktur är själva hantering av datan och utskrift av denna i olika funktioner
+        <code>getData</code> och <code>returnData</code>.
+    </p>
+    <p> 
+        <b>getData</b> hanterar alla queries <code>for (var propName in req.query) {
+        if (req.query.hasOwnProperty(propName)) { ... } ...}</code>. Därefter mappas varje element i log.json-filen. Med regex kollas det om något värde
+        i filen matchar med querysträngen. Om det matchas läggs det elementet i en array <code>allres</code>. En funktion <code>OnlyUnique</code> ska 
+        mappa alla element i en array och returnera unika. Något som fungerande innan försöket att implementera Krav 5.
+    </p>
+    <p>
+        <b>returnData</b> tar bara emot datan och returnerar datan som json.
+    </p>
+    <h2>KRAV 3 - Testa servern</h2>
+    <p><b>client/bthloggen.bash</b></p>
+    <p>
+        Bashscriptet är uppbyggd enligt tidigare kursmoments struktur. Tillgängliga commandon börjar på "app-" och kallas beronde på input från användare. 
+        Några funktioner är utplockade såsom <code>printResult</code>.
+    </p>
+    <p>
+        För att hämta jsonfilerna används curl och för att läsa av json används jq och för att räkna antalet träffar används jq length.
+    </p>
+    <p>
+        Option <code>-c | --count</code> var tänkt att lägga till "jq length" på resultatet från app-view. Fick det dock inte att fungera och app-view
+        gör olika saker beroende på om variabeln <code>$PRINT</code> är satt till 0 eller 1. Default är 0.
+    </p>
+    <p>
+        Docker imagen byggs på enklast sätt. bashscriptet och textfilen för servernamnet kopieras.
+    </p>
+    <h2>KRAV 5 - Mer data</h2>
+    <p><b>client/bthloggen.bash</b></p>
+    <p>
+        Loggen är utökad till att hämta dag, månad, år och tid. Servern hanterar alla parameterar och flera queries dock fungerar det inte att filtrera.
+        Om du nu söker på dag=12 och url=google får du alla entries med antingen dag 12 eller url google. 
+    </p>
+    <u>
+        <h2>2.  Allmänt</h2>
+    </u>
+    <p>
+        Det svåraste med projektet var regex! Olika operativsystem, olika versioner av bash och sed gjorde felsökningen svår. Hade velat lägga mer tid
+        till att få till servern och kanske koppla ihop med en webbklient (krav 4). Annars var det ett bra projekt som knöt ihop säcken med allt
+        från tidigare kursmoment.
+    </p>
+    <u>
+        <h2>3. Om kursen</h2>
+    </u>
+    <p>
+        Bra kurs som växte med kursmomenten. Varierat och klurigt. Det var bra att få inblick och att få jobba med Docker! Det som varit svårt i kursen är att förstå
+        vad som är vad. Vad som är server, host, klient osv. Sådant som flyter på när en har hållt på med detta ett tag men som är lite svårgreppat som nybörjare.
+        Tycker ändå att innehållet har varit bra avvägt med tanke på tid. Det har funnits utrymme att testa mer - om en är lite mer haj.
+        Kursen får en 9.
+    </p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 </section>
 </article>
