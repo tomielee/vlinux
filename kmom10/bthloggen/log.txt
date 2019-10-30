@@ -58,17 +58,18 @@ Stäng ner
 
 
 build the images with dev.bash. or
-    sudo docker build --rm -t jeneljenel/vlinux-mazeserver server/
-    sudo docker build --rm -t jeneljenel/vlinux-mazeclient:loop client/
+sudo docker build --rm -t jeneljenel/vlinux-kmom10:server server/
+sudo docker build --rm -t jeneljenel/vlinux-kmom10:client client/
 
 create network
     1. sudo docker network create dbwebb
 
-run the server same as sudo docker sudo docker run --rm -d -p 8080:1337 --name myserver --net dbwebb jeneljenel/vlinux-mazeserver:latest
-    2. sudo docker-compose up server 
+run the server same as sudo docker sudo docker run --rm -d -p 8080:1337 --name myserver --net dbwebb jeneljenel/vlinux-kmom10:server
+    2. sudo docker-compose run -d server 
 
-run the client  sudo docker run -it --rm  --name myclient --net dbwebb jeneljenel/vlinux-mazeclient:loop
-    3. sudo docker-compose up client 
+run the client  sudo docker run -it --rm  --name myclient --net dbwebb jeneljenel/vlinux-kmom10:client
+    3. sudo docker-compose run client 
+
 
 
 MISCS MISCS MISCS
