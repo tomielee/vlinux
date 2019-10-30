@@ -22,7 +22,7 @@ build the images with dev.bash. or
 create network
     1. sudo docker network create dbwebb
 
-run the server same as sudo docker build --rm -t jeneljenel/vlinux-mazeclient:loop client/
+run the server same as sudo docker sudo docker run --rm -d -p 8080:1337 --name myserver --net dbwebb jeneljenel/vlinux-mazeserver:latest
     2. sudo docker-compose up server 
 
 run the client  sudo docker run -it --rm  --name myclient --net dbwebb jeneljenel/vlinux-mazeclient:loop

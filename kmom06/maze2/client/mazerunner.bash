@@ -337,7 +337,7 @@ function app-loop
             0 | 1)
                 app-select "$choice"
                 app-enter
-                app-info
+                app-info "$*"
                 break
             ;;
             quit)
