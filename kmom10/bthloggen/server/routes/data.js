@@ -21,7 +21,7 @@ function returnData(req, res) {
 /*eslint no-trailing-spaces: [2, { "skipBlankLines": true }]*/
 function getData(req, res, next) {
     var urlInput;
-    let api = file;
+    let log = file;
     let allres = [];
     let content = [];
  
@@ -31,7 +31,7 @@ function getData(req, res, next) {
                 urlInput = req.query;
                 let reg = new RegExp(req.query[propName], "g");
 
-                api.forEach(element => {
+                log.forEach(element => {
                     // console.log(element[propName], " = ", reg)
                     if (element[propName].match(reg)) {
                         allres.push(element);
@@ -41,9 +41,8 @@ function getData(req, res, next) {
             }
         }
     } else {
-        content = api;
+        content = log;
     }
-
 
     req.data = {
         query: urlInput,

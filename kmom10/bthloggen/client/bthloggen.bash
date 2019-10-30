@@ -21,8 +21,9 @@ VERSION="1.0.0"
 # Global variables
 PRINT=0
 
-# OPTION Message to display for usage and help.
 #
+# OPTION -h | --help 
+# Display menu/help
 function showMenu
 {   
     # clear
@@ -56,10 +57,9 @@ function showMenu
     printf "%s\n" "${txt[@]}"
 }
 
-
 #
-# OPTION Message to display version
-#
+# OPTION -v | --version
+# Display version
 function showVersion
 {
     txt=(
@@ -75,8 +75,17 @@ function showVersion
 }
 
 #
-# App url
-# Get url to view the server in browser
+# OPTION -c
+# Display number of rows in view <argument>
+function showRows
+{
+    PRINT=1
+    app-view "$@"
+        
+}
+#
+# COMMAND url
+# Display url to view the server in browser
 function app-url
 {
 
@@ -91,10 +100,9 @@ function app-url
     printf "%s\n" "${text[@]}"
 }
 
-
 #
-# App view 
-# App view url or ip
+# COMMAND view 
+# Display content from /data?query=
 function app-view
 {
 
@@ -144,7 +152,7 @@ function app-view
 }
 
 #
-# App use
+# COMMAND use
 # Set the servername (localhost or service name).
 function app-use
 {
@@ -164,17 +172,7 @@ function app-use
 }
 
 #
-# OPTION -c
-# Show rows files
-function showRows
-{
-    PRINT=1
-    app-view "$@"
-        
-}
-
-#
-# Function to print result after fetched.
+# Function to print result
 function printResult
 {
     local text=(
@@ -190,10 +188,8 @@ function printResult
     printf "%s\n" "${text[@]}"
 }
 
-
 #
-# Setup files
-#
+# Function to setup files
 function defaultFiles
 {
     touch server.txt
@@ -203,7 +199,6 @@ function defaultFiles
 
 #
 # Message to display when bad usage.
-#
 function badUsage
 {
     local message="$1"
@@ -237,8 +232,8 @@ function menu
             exit 0
         ;;
         --count | -c )
-        shift #
-        showRows "$*"
+            shift #
+            showRows "$*"
         ;;
         url     \
         |view    \
