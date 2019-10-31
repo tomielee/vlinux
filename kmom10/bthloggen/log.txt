@@ -117,3 +117,15 @@ MISCS MISCS MISCS
 // else {
 //     content = api;
 // }
+
+
+
+
+
+# # # # # # # FELSÖKNING
+
+cp /media/sf_vlinux/me/kmom10/bthloggen/server/Dockerfile server
+cp /media/sf_vlinux/me/kmom10/bthloggen/lazybuild.bash .
+
+./lazybuild.bash
+sudo docker push jeneljenel/vlinux-kmom10:server
