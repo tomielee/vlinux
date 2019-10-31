@@ -6,7 +6,7 @@
 var express = require('express');
 var router = express.Router();
 
-const file = require('../../data/log.json');
+const file = require('../data/log.json');
 
 router.use(function(req, res, next) {
     console.log("/data is up");
