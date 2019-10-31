@@ -57,7 +57,8 @@ Stäng ner
     $ docker-compose down
 
 
-build the images with dev.bash. or
+# # # # # LAZY
+build the images with lazybuild or
 sudo docker build --rm -t jeneljenel/vlinux-kmom10:server server/
 sudo docker build --rm -t jeneljenel/vlinux-kmom10:client client/
 

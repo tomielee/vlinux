@@ -3,10 +3,14 @@
 
 FROM node:8
 
-# RUN npm install
-
 # Set workingdir
 WORKDIR server
+
+COPY package*.json ./
+
+RUN npm install
+RUN npm install -g nodemon
+
 
 # Copy the exiting files in server/ to containter /bthloggen/server
 COPY ./ /server/
