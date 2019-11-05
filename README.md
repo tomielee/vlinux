@@ -20,10 +20,13 @@ Client - executing the game.
 Run all with kmom05.bash
 
 ### KMOM06
-Not done
+Using Docker yml to run servern and client.
+Run all commands in a loop.
 
 ### KMOM10
-Not done
+1. get info from a 50k log.
+2. create bashscript to test the log.
+3. build and run all.
 
 ### log.txt
-All coarses has log with useful docker and bash scripts.
+All coarses has log with docker and bash scripts and notes.
